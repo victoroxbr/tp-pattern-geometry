@@ -44,4 +44,14 @@ public class PointTest {
 		Assert.assertEquals(10, p.getCoordinate().getX(), EPSILON);
 		Assert.assertEquals(12.2, p.getCoordinate().getY(), EPSILON);
 	}
+	
+	@Test
+	public void testClone() {
+		Coordinate c = new Coordinate(5, 10.2);
+		Point p = new Point(c);
+		Geometry copy = p.clone();
+		copy.translate(5, 5);
+		
+		Assert.assertEquals(5, p.getCoordinate().getX(), EPSILON);
+	}
 }
