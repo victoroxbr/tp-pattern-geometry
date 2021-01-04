@@ -6,8 +6,14 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestLineString {
+public class LineStringTest {
 	public static final double EPSILON = 1.0e-15;
+	
+	@Test
+	public void testDefaultConstructor() {
+		LineString line = new LineString();
+		Assert.assertEquals(0, line.getPoints().size(), EPSILON);
+	}
 	
 	@Test
 	public void testConstructor() {
@@ -53,5 +59,24 @@ public class TestLineString {
 	public void testType() {
 		LineString line = new LineString();
 		Assert.assertEquals("LineString", line.getType());
+	}
+	
+	@Test
+	public void testIsEmpty() {
+		Coordinate c = new Coordinate(5, 10.2);
+		Point p1 = new Point();
+		Point p2 = new Point(c);
+		List<Point> listPoint = new ArrayList<Point>();
+		listPoint.add(p1);
+		listPoint.add(p2);
+		LineString line = new LineString(listPoint);
+		
+		List<Point> listPoint2 = new ArrayList<Point>();
+		listPoint.add(p2);
+		listPoint.add(p2);
+		LineString line2 = new LineString(listPoint2);
+		
+		Assert.assertTrue(line.isEmpty());
+		Assert.assertFalse(line2.isEmpty());
 	}
 }

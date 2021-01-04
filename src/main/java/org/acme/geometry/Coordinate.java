@@ -5,13 +5,11 @@ public class Coordinate {
 	private double y;
 	
 	public Coordinate() {
-		// TODO Auto-generated constructor stub
-		this.x = 0.0;
-		this.y = 0.0;
+		this.x = Double.NaN;
+		this.y = Double.NaN;
 	}
 	
 	public Coordinate(double x, double y) {
-		// TODO Auto-generated constructor stub
 		this.x = x;
 		this.y = y;
 	}
@@ -24,5 +22,11 @@ public class Coordinate {
 		return y;
 	}
 	
-	
+	public Boolean isEmpty() {
+		if(Double.isNaN(this.x) || Double.isNaN(this.y)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

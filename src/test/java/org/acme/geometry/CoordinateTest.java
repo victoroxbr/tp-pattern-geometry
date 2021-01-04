@@ -10,8 +10,22 @@ public class CoordinateTest {
 	@Test
 	public void testDefaultConstructor(){
 		Coordinate c = new Coordinate();
-		Assert.assertEquals(0.0, c.getX(), EPSILON);
-		Assert.assertEquals(0.0, c.getY(), EPSILON);
+		Assert.assertEquals(Double.NaN, c.getX(), EPSILON);
+		Assert.assertEquals(Double.NaN, c.getY(), EPSILON);
+	}
+	
+	@Test
+	public void testConstructor() {
+		Coordinate c = new Coordinate(5, 10.2);
+		Assert.assertEquals(5, c.getX(), EPSILON);
+		Assert.assertEquals(10.2, c.getY(), EPSILON);
 	}
 
+	@Test
+	public void testIsEmpty() {
+		Coordinate c_empty = new Coordinate();
+		Coordinate c = new Coordinate(5, 10.2);
+		Assert.assertTrue(c_empty.isEmpty());
+		Assert.assertFalse(c.isEmpty());
+	}
 }

@@ -18,8 +18,16 @@ public class Point implements Geometry {
 
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
 		return "Point";
+	}
+
+	@Override
+	public Boolean isEmpty() {
+		if(coordinate.isEmpty()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
