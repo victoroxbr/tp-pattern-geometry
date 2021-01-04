@@ -72,11 +72,28 @@ public class LineStringTest {
 		LineString line = new LineString(listPoint);
 		
 		List<Point> listPoint2 = new ArrayList<Point>();
-		listPoint.add(p2);
-		listPoint.add(p2);
+		listPoint2.add(p2);
+		listPoint2.add(p2);
 		LineString line2 = new LineString(listPoint2);
 		
 		Assert.assertTrue(line.isEmpty());
 		Assert.assertFalse(line2.isEmpty());
+	}
+	
+	@Test
+	public void testTranslate() {
+		Coordinate c1 = new Coordinate(5, 10.2);
+		Coordinate c2 = new Coordinate(10, 3);
+		Point p1 = new Point(c1);
+		Point p2 = new Point(c2);
+		List<Point> listPoint = new ArrayList<Point>();
+		listPoint.add(p1);
+		listPoint.add(p2);
+		LineString line = new LineString(listPoint);
+		
+		line.translate(5, 5);
+		
+		Assert.assertEquals(10, line.getPoints().get(0).getCoordinate().getX(), EPSILON);
+		Assert.assertEquals(15, line.getPoints().get(1).getCoordinate().getX(), EPSILON);
 	}
 }

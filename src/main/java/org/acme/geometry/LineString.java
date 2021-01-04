@@ -13,7 +13,10 @@ public class LineString implements Geometry {
 	}
 	
 	public LineString(List<Point> points) {
-		this.points = points;
+		assert(points != null);
+		if(points.size() >= 2) {
+			this.points = points;
+		}
 	}
 	
 	public int getNumPoints() {
@@ -35,13 +38,21 @@ public class LineString implements Geometry {
 
 	@Override
 	public Boolean isEmpty() {
-		for (Iterator<Point> iterator = points.iterator(); iterator.hasNext();) {
+		for (Iterator<Point> iterator = this.points.iterator(); iterator.hasNext();) {
 			Point point = (Point) iterator.next();
 			if(point.isEmpty()) {
 				return true;
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void translate(double dx, double dy) {
+		for (Iterator<Point> iterator = this.points.iterator(); iterator.hasNext();) {
+			Point point = (Point) iterator.next();
+			point.translate(dx, dy);
+		}
 	}
 
 }
