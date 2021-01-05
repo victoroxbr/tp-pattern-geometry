@@ -7,12 +7,6 @@ public abstract class AbstractGeometry implements Geometry {
 	
 	private List<GeometryListener> listeners = new ArrayList<GeometryListener>();
 	
-	public String asText() {
-		WktVisitor visitor = new WktVisitor();
-		this.accept(visitor);
-		return visitor.getResult();
-	}
-	
 	protected void triggerChange() {
 		for(int i = 0; i < this.listeners.size(); i++) {
 			this.listeners.get(i).onChange(this);
@@ -22,6 +16,13 @@ public abstract class AbstractGeometry implements Geometry {
 	@Override
 	public Geometry clone() {
 		return this.clone();
+	}
+	
+	@Override
+	public String asText() {
+		WktVisitor visitor = new WktVisitor();
+		this.accept(visitor);
+		return visitor.getResult();
 	}
 
 	@Override

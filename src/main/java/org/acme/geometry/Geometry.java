@@ -4,6 +4,7 @@ public interface Geometry {
 	public String getType();
 	public Boolean isEmpty();
 	public void translate(double dx, double dy);
+	public String asText();
 	public Geometry clone();
 	public Enveloppe getEnveloppe();
 	public void accept(GeometryVisitor visitor);

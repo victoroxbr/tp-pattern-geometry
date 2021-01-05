@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class GeoJSONVisitorTest {
+	
 	@Test
 	public void testVisitPoint() {
 		GeoJSONVisitor visitor = new GeoJSONVisitor();

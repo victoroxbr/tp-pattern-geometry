@@ -3,6 +3,7 @@ package org.acme.geometry;
 import java.util.Iterator;
 
 public class GeoJSONVisitor implements GeometryVisitor {
+	
 	private StringBuilder buffer;
 	
 	public GeoJSONVisitor() {

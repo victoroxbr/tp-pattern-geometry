@@ -56,4 +56,9 @@ public class GeometryWithCachedEnvelope implements Geometry, GeometryListener {
 	public void addListener(GeometryListener listener) {
 		this.original.addListener(listener);
 	}
+
+	@Override
+	public String asText() {
+		return this.original.asText();
+	}
 }
