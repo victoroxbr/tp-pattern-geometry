@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class LineString implements Geometry {
+public class LineString extends AbstractGeometry {
 	
 	private List<Point> points;
 	
