@@ -14,9 +14,8 @@ public class LineString implements Geometry {
 	
 	public LineString(List<Point> points) {
 		assert(points != null);
-		if(points.size() >= 2) {
-			this.points = points;
-		}
+		assert(points.size() > 1);
+		this.points = points;
 	}
 	
 	public int getNumPoints() {
@@ -60,7 +59,7 @@ public class LineString implements Geometry {
 		List<Point> points_clone = new ArrayList<Point>();
 		for (Iterator<Point> iterator = this.points.iterator(); iterator.hasNext();) {
 			Point point = (Point) iterator.next();
-			points_clone.add(new Point(point.getCoordinate()));
+			points_clone.add(point.clone());
 		}
 		return new LineString(points_clone);
 	}
