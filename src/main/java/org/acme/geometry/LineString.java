@@ -64,4 +64,14 @@ public class LineString implements Geometry {
 		return new LineString(points_clone);
 	}
 
+	@Override
+	public Enveloppe getEnveloppe() {
+		EnveloppeBuilder builder = new EnveloppeBuilder();
+		for(Iterator<Point> iterator = this.points.iterator(); iterator.hasNext();) {
+			Point p = (Point) iterator.next();
+			builder.insert(p.getCoordinate());
+		}
+		return builder.build();
+	}
+
 }

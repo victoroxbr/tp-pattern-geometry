@@ -102,4 +102,15 @@ public class LineStringTest {
 		
 		Assert.assertEquals(5, line.getPoints().get(0).getCoordinate().getX(), EPSILON);
 	}
+	
+	@Test
+	public void testGetEnveloppe() {
+		LineString line = SampleFactory.createLineString();
+		Enveloppe e = line.getEnveloppe();
+		
+		Assert.assertEquals(5, e.getXmin(), EPSILON);
+		Assert.assertEquals(10, e.getXmax(), EPSILON);
+		Assert.assertEquals(3, e.getYmin(), EPSILON);
+		Assert.assertEquals(10.2, e.getYmax(), EPSILON);
+	}
 }
