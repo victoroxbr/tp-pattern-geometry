@@ -30,7 +30,9 @@ public abstract class AbstractGeometry implements Geometry {
 
 	@Override
 	public Enveloppe getEnveloppe() {
-		return null;
+		EnveloppeBuilder visitor = new EnveloppeBuilder();
+		this.accept(visitor);
+		return visitor.build();
 	}
 
 	@Override

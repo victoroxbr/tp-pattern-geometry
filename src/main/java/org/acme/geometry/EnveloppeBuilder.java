@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class EnveloppeBuilder {
+public class EnveloppeBuilder implements GeometryVisitor {
 	private List<Coordinate> coordinates;
 
 	public EnveloppeBuilder() {
@@ -35,5 +35,18 @@ public class EnveloppeBuilder {
 	
 	public List<Coordinate> getCoordinates() {
 		return coordinates;
+	}
+
+	@Override
+	public void visit(Point point) {
+		this.insert(point.getCoordinate());		
+	}
+
+	@Override
+	public void visit(LineString lineString) {
+		for(Iterator<Point> iterator = lineString.getPoints().iterator(); iterator.hasNext();) {
+			Point p = (Point) iterator.next();
+			this.insert(p.getCoordinate());
+		}
 	}
 }

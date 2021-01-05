@@ -15,13 +15,11 @@ public class WktVisitor implements GeometryVisitor {
 	public void visit(Point point) {
 		WktWriter writer = new WktWriter();
 		this.buffer = new StringBuilder(writer.write(point));
-		System.out.print(this.buffer);
 	}
 
 	@Override
 	public void visit(LineString lineString) {
 		WktWriter writer = new WktWriter();
 		this.buffer = new StringBuilder(writer.write(lineString));
-		System.out.print(this.buffer);
 	}
 }
