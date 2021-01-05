@@ -2,35 +2,36 @@ package org.acme.geometry;
 
 import java.util.Iterator;
 
-public class WktWriter implements GeometryWriter{
+public class GeoJSONWriter implements GeometryWriter {
 	
-	public WktWriter() {
+	public GeoJSONWriter() {
 
 	}
-	
+
 	@Override
 	public String getName() {
-		return "WKT";
+		return "GeoJSON";
 	}
-	
+
 	@Override
 	public String write(Geometry geometry) {
 		if(geometry instanceof Point) {
 			Point p = (Point) geometry;
-			String wkt = "POINT(" + p.getCoordinate().getX() + " " + p.getCoordinate().getY() + ")";
-			return wkt;
+			String geoJSON = "{'type': 'Point', 'coordinates': [" + p.getCoordinate().getX() + ", " + p.getCoordinate().getY() + "]}";
+			return geoJSON;
 		} else if(geometry instanceof LineString) {
 			LineString l = (LineString) geometry;
-			String wkt = "LINESTRING(";
+			String geoJSON = "{'type': 'LineString', 'coordinates': [";
 			for(Iterator<Point> iterator = l.getPoints().iterator(); iterator.hasNext();) {
 				Point p = (Point) iterator.next();
-				wkt += p.getCoordinate().getX() + " " + p.getCoordinate().getY() + ",";
+				geoJSON += "[" + p.getCoordinate().getX() + ", "+ p.getCoordinate().getY() + "], ";
 			}
-			wkt = wkt.substring(0, wkt.length() - 1);
-			wkt += ")";
-			return wkt;
+			geoJSON = geoJSON.substring(0, geoJSON.length() - 2);
+			geoJSON += "]}";
+			return geoJSON;
 		} else {
 			throw new RuntimeException("geometry type is not supported");
 		}
 	}
+
 }

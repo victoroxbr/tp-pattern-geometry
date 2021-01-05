@@ -4,6 +4,14 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class WktWriterTest {
+	
+	@Test
+	public void testGetName() {
+		WktWriter writer = new WktWriter();
+		
+		Assert.assertEquals("WKT", writer.getName());
+	}
+	
 	@Test
 	public void testWritePoint() {
 		Geometry g = new Point(new Coordinate(3.0,4.0));
