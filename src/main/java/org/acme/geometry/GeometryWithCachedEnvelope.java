@@ -1,6 +1,7 @@
 package org.acme.geometry;
 
 public class GeometryWithCachedEnvelope implements Geometry, GeometryListener {
+	
 	private Geometry original;
 	private Enveloppe cachedEnvelope;
 	

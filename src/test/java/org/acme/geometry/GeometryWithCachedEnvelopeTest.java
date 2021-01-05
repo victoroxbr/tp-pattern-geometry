@@ -25,4 +25,12 @@ public class GeometryWithCachedEnvelopeTest {
 		
 		Assert.assertNotSame(a, b);
 	}
+	
+	@Test
+	public void testGetType() {
+		Geometry g = SampleFactory.createPointA();
+		g = new GeometryWithCachedEnvelope(g);
+		
+		Assert.assertEquals("Point", g.getType());
+	}
 }

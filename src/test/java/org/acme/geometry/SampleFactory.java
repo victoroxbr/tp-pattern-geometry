@@ -3,6 +3,7 @@ package org.acme.geometry;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class SampleFactory {
 	public static Point createPointA() {
 		return new Point(new Coordinate(5, 10.2));
@@ -25,5 +26,14 @@ public class SampleFactory {
 		builder.insert(new Coordinate(10, 3));
 		builder.insert(new Coordinate(2, 20));
 		return builder.build();
+	}
+	
+	public static GeometryCollection createCollection() {
+		List<Geometry> geometries = new ArrayList<Geometry>();
+		Point p = createPointA();
+		LineString l = createLineString();
+		geometries.add(p);
+		geometries.add(l);
+		return new GeometryCollection(geometries);
 	}
 }

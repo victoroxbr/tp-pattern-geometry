@@ -49,4 +49,18 @@ public class EnveloppeBuilder implements GeometryVisitor {
 			this.insert(p.getCoordinate());
 		}
 	}
+
+	@Override
+	public void visit(GeometryCollection geometryCollection) {
+		for(Iterator<Geometry> iterator = geometryCollection.getGeometries().iterator(); iterator.hasNext();) {
+			Geometry g = (Geometry) iterator.next();
+			if(g instanceof Point) {
+				Point p = (Point) g;
+				this.visit(p);
+			} else if(g instanceof LineString) {
+				LineString l = (LineString) g;
+				this.visit(l);
+			}
+		}
+	}
 }

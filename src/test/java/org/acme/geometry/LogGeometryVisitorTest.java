@@ -39,4 +39,19 @@ public class LogGeometryVisitorTest {
 		System.setOut(old);
 		Assert.assertEquals("Je suis une polyligne définie par 2 point(s)", os.toString());
 	}
+	
+	@Test
+	public void testVisitCollection() throws UnsupportedEncodingException {
+		LogGeometryVisitor visitor = new LogGeometryVisitor();
+		GeometryCollection collection = SampleFactory.createCollection();
+		
+		ByteArrayOutputStream os = new ByteArrayOutputStream();
+		PrintStream out = new PrintStream(os);
+		PrintStream old = System.out;
+		System.setOut(out);
+		collection.accept(visitor);
+		System.out.flush();
+		System.setOut(old);
+		Assert.assertEquals("Je suis une géométrie collection définie par 2 géométrie(s)", os.toString());
+	}
 }
